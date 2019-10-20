@@ -16,7 +16,7 @@ phases:
           if [ "${env}" = "${MY_VAR}" ];then
             aws cloudformation deploy --stack-name data-collection-codepipeline-$env-stack --template-file codepipeline-prod.yaml --parameter-overrides Project=$project Environment=$env Department=$department Owner=$owner GithubUsername=$githubuser RepoName=$reponame BranchName=$branch OAuthtoken=$oauthtoken --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM 1>&2
           else
-            aws cloudformation deploy --stack-name data-collection-codepipeline-$env-stack --template-file codepipeline-non-prod.yaml --parameter-overrides Project=$project Environment=$env Department=$department Owner=$owner GithubUsername=$githubuser RepoName=$reponame BranchName=$branch OAuthtoken=$oauthtoken --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
+            aws cloudformation deploy --stack-name data-collection-codepipeline-$env-stack --template-file codepipeline-non-prod.yaml --parameter-overrides Project=$project Environment=$env Department=$department Owner=$owner GithubUsername=$githubuser RepoName=$reponame BranchName=$branch OAuthtoken=$oauthtoken --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM 1>&2
           fi
 artifacts:
   files: '**/*'
