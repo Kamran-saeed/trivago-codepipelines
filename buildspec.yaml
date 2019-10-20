@@ -5,6 +5,8 @@ phases:
       python: 3.7
   build:
     commands:
+      - echo '$env'
+      - echo $env
       - "if '$env' == 'dev'; then echo 'prod'; else echo 'non prod'; fi"
 artifacts:
   files: '**/*'
