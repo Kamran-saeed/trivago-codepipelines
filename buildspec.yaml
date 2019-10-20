@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    MY_VAR: "dev"
+    MY_VAR: "prod"
 
 phases:
   install:
@@ -14,15 +14,9 @@ phases:
       - echo $env
       - | 
           if [ "${env}" = "${MY_VAR}" ];then
-            echo 'prod' 1>&2
+            aws cloudformation deploy --stack-name data-collection-codepipeline-$env-stack --template-file codepipeline-prod.yaml --parameter-overrides Project=$project Environment=$env Department=$department Owner=$owner GithubUsername=$githubuser RepoName=$reponame BranchName=$branch OAuthtoken=$oauthtoken --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
           else
-            echo 'non prod' 
+            aws cloudformation deploy --stack-name data-collection-codepipeline-$env-stack --template-file codepipeline-non-prod.yaml --parameter-overrides Project=$project Environment=$env Department=$department Owner=$owner GithubUsername=$githubuser RepoName=$reponame BranchName=$branch OAuthtoken=$oauthtoken --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
           fi
-      - |
-        if [ -z "${AWS_REGION}" ]; then 
-          echo "AWS_REGION variable not set" 1>&2
-        else
-          echo "AWS_REGION=${AWS_REGION}"
-        fi
 artifacts:
   files: '**/*'
