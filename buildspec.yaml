@@ -13,7 +13,7 @@ phases:
       - echo '$env'
       - echo $env
       - | 
-          if [ "${env}" == "${MY_VAR}" ];then
+          if [ "${env}" = "${MY_VAR}" ];then
             echo 'prod' 1>&2
           else
             echo 'non prod' 
