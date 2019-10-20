@@ -10,15 +10,13 @@ phases:
       python: 3.7
   build:
     commands:
-      - echo '$env'
-      - echo $env
       - | 
           if [ "${env}" = "${MY_VAR}" ];then
             aws cloudformation deploy --stack-name data-collection-codepipeline-$env-stack --template-file codepipeline-prod.yaml --parameter-overrides Project=$project Environment=$env Department=$department Owner=$owner GithubUsername=$githubuser RepoName=$reponame BranchName=$branch OAuthtoken=$oauthtoken --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
-            echo 'in prod' 1>&2
+            echo 'Deployed Production Environment Pipeline Stack' 1>&2
           else
             aws cloudformation deploy --stack-name data-collection-codepipeline-$env-stack --template-file codepipeline-non-prod.yaml --parameter-overrides Project=$project Environment=$env Department=$department Owner=$owner GithubUsername=$githubuser RepoName=$reponame BranchName=$branch OAuthtoken=$oauthtoken --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
-            echo 'non prod'
+            echo 'Deployed Non Production Environment Pipeline Stack'
           fi
 artifacts:
   files: '**/*'
