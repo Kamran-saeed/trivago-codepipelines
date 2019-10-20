@@ -12,7 +12,6 @@ phases:
     commands:
       - echo '$env'
       - echo $env
-      - ${MY_VAR}=$env
       - | 
           if [ "${env}" == "${MY_VAR}" ];then
             echo 'prod' 1>&2
