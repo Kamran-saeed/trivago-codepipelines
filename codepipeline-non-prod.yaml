@@ -238,6 +238,7 @@ Resources:
       TimeoutInMinutes: 15
       Source:
         Type: CODEPIPELINE
+        BuildSpec: 'non-prod-buildspec.yaml'
       Environment:
         Type: LINUX_CONTAINER
         ComputeType: BUILD_GENERAL1_SMALL
