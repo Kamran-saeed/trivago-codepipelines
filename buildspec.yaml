@@ -5,12 +5,6 @@ phases:
       python: 3.7
   build:
     commands:
-      - |
-        if [ "$env" == "prod" ]; then
-             aws cloudformation deploy --stack-name data-collection-codepipeline-$env-stack --template-file codepipeline-prod.yaml --parameter-overrides Project=$project Environment=$env Department=$department Owner=$owner GithubUsername=$githubuser RepoName=$reponame BranchName=$branch OAuthtoken=$oauthtoken --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
-        else
-             echo $CODEBUILD_WEBHOOK_TRIGGER
-             aws cloudformation deploy --stack-name data-collection-codepipeline-$env-stack --template-file codepipeline-non-prod.yaml --parameter-overrides Project=$project Environment=$env Department=$department Owner=$owner GithubUsername=$githubuser RepoName=$reponame BranchName=$branch OAuthtoken=$oauthtoken --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM
-        fi
+      - if [ "$env" == "prod" ]; then aws cloudformation deploy --stack-name data-collection-codepipeline-$env-stack --template-file codepipeline-prod.yaml --parameter-overrides Project=$project Environment=$env Department=$department Owner=$owner GithubUsername=$githubuser RepoName=$reponame BranchName=$branch OAuthtoken=$oauthtoken --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM; else aws cloudformation deploy --stack-name data-collection-codepipeline-$env-stack --template-file codepipeline-non-prod.yaml --parameter-overrides Project=$project Environment=$env Department=$department Owner=$owner GithubUsername=$githubuser RepoName=$reponame BranchName=$branch OAuthtoken=$oauthtoken --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM; fi
 artifacts:
   files: '**/*'
