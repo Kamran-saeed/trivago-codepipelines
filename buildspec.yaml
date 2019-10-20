@@ -3,16 +3,13 @@ phases:
   install:
     runtime-versions:
       python: 3.7
-    commands:
-      - echo Installing requirements from file
-      - pip install -r unpack/requirements.txt
   build:
     commands:
-      - python -m pytest test/test_unpack.py -v
-      - cd unpack
-      - zip -r function.zip .
-      - aws s3 sync . "s3://$S3Bucket/lambda-code"
-      - cd ..
-      - aws cloudformation package --template-file main.yaml --s3-bucket $S3Bucket --output-template-file packagedtemplate.yaml
+      - |
+        if [ $Env = "prod" ]; then
+          echo 'prod env'
+        else
+          echo 'non prod env'
+        fi
 artifacts:
   files: '**/*'
