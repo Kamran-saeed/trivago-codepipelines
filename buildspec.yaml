@@ -8,7 +8,7 @@ phases:
       - echo '$env'
       - echo $env
       - | 
-          if [ $env == 'dev' ] 
+          if [ ${env} == 'dev' ] 
           then
             echo 'prod' 
           else
