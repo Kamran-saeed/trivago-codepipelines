@@ -1,4 +1,9 @@
 version: 0.2
+
+env:
+  variables:
+    MY_VAR: "prod"
+
 phases:
   install:
     runtime-versions:
@@ -7,10 +12,10 @@ phases:
     commands:
       - echo '$env'
       - echo $env
+      - ${MY_VAR}=$env
       - | 
-          if [ "${env}" == "dev" ] 
-          then
-            echo 'prod'  1>&2
+          if [ "${env}" == "${MY_VAR}" ];then
+            echo 'prod' 1>&2
           else
             echo 'non prod' 
           fi
