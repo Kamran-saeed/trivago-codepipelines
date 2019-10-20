@@ -5,6 +5,6 @@ phases:
       python: 3.7
   build:
     commands:
-      - "if ['$evn' = 'prod']; then echo 'prod'; else echo 'non prod'; fi"
+      - "if ['$env' = 'prod']; then echo 'prod'; else echo 'non prod'; fi"
 artifacts:
   files: '**/*'
