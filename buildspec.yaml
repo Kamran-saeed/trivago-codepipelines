@@ -14,5 +14,11 @@ phases:
           else
             echo 'non prod' 
           fi
+      - |
+        if [ -z "${AWS_REGION}" ]; then 
+          echo "AWS_REGION variable not set" 1>&2
+        else
+          echo "AWS_REGION=${AWS_REGION}"
+        fi
 artifacts:
   files: '**/*'
