@@ -2,7 +2,7 @@ version: 0.2
 
 env:
   variables:
-    MY_VAR: "prod"
+    MY_VAR: "dev"
 
 phases:
   install:
