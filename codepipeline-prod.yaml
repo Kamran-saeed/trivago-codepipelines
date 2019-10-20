@@ -251,6 +251,8 @@ Resources:
       Tags:
         - Key: Project
           Value: !Ref Project
+        - Key: Repository
+          Value: !Ref RepoName
         - Key: Env
           Value: !Ref Environment
         - Key: Dept
@@ -361,6 +363,8 @@ Resources:
       Tags:
         - Key: Project
           Value: !Ref Project
+        - Key: Repository
+          Value: !Ref RepoName
         - Key: Env
           Value: !Ref Environment
         - Key: Dept
