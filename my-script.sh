@@ -1,1 +1,0 @@
-- if [$env == 'dev']; then echo 'prod'; else echo 'non prod'; fi

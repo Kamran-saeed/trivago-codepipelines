@@ -1,4 +1,4 @@
-version: 0.1
+version: 0.2
 phases:
   install:
     runtime-versions:
@@ -7,7 +7,6 @@ phases:
     commands:
       - echo '$env'
       - echo $env
-      - chmod +x ./my-script.sh
-      - ./my-script.sh
+      - if [$env == 'dev']; then echo 'prod'; else echo 'non prod'; fi
 artifacts:
   files: '**/*'
