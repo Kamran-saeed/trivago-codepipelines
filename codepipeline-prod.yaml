@@ -292,7 +292,7 @@ Resources:
                 Provider: GitHub
                 Version: 1
               Configuration:
-                Owner: GithubUsername
+                Owner: !Ref GithubUsername
                 Repo: !Ref RepoName
                 Branch: !Ref BranchName
                 PollForSourceChanges: true
