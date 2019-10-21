@@ -111,6 +111,7 @@ Resources:
               - cloudwatch:GetMetricStatistics
               - events:Put*
               - events:DescribeRule
+              - iam:*
             Resource: "*"
       Roles:
         - !Ref CodeBuildRole
